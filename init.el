@@ -1,17 +1,9 @@
-;;; init.el --- init setup
+;;; init.el --- Load configuration -*- lexical-binding: t -*-
 
 ;;; Commentary:
-;;; Init config
+;;; Load the full configuration, divided in multiple files
 
 ;;; Code:
-(add-to-list 'load-path "~/.emacs.d/settings")
-
-(setq inhibit-startup-message t)
-(scroll-bar-mode 0)
-(tool-bar-mode 0)
-(tooltip-mode 0)
-(set-fringe-mode 0)
-(menu-bar-mode 0)
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (show-paren-mode 1)
@@ -68,6 +60,7 @@
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq backup-by-copying t) ;; copy files, don't rename them.
+
 (setq delete-old-versions t)
 (setq kept-new-versions 12)
 (setq kept-old-versions 12)
