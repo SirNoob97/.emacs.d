@@ -4,6 +4,7 @@
 ;;; Define Functions
 
 ;;; Code:
+
 (require 'cl-lib)
 
 (declare-function async-inject-variables 'async)
@@ -129,5 +130,25 @@ ARG may be passed as a numberic prefix."
   (message "Copied contents of '%s' to the clipboard" file))
 (global-set-key (kbd "C-c f y") 'sn-copy-file-content)
 
+(defun sn-copy-file-name ()
+  "Copy the current file name to the clipboard."
+  (interactive)
+  (if-let ((filename (if (equal major-mode 'dired-mode)
+			default-directory
+		      (buffer-file-name))))
+      (progn
+	(kill-new filename)
+	(message "Copied '%s' to the clipboard." filename))
+    (warn "Current buffer is not attached to a file!!")))
+(global-set-key (kbd "C-c f n") 'sn-copy-file-name)
+
+(defun sn-reload-init-file ()
+  "Reload Emacs configuration."
+  (interactive)
+  (load user-init-file)
+  (message "Emacs configuration reloaded ."))
+(global-set-key (kbd "C-c C-r") 'sn-reload-init-file)
+
 (provide 'init-functions)
+
 ;;; init-functions.el ends here
