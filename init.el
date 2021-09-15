@@ -34,19 +34,11 @@
 (update-load-path)
 
 (require 'init-functions)
+(require 'init-keybindings)
+(require 'init-emacs-packages)
 
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
-(show-paren-mode 1)
-(column-number-mode)
-(global-display-line-numbers-mode t)
-;; Disable line numbers for some modes
-(dolist (mode '(org-mode-hook
-                term-mode-hook
-                shell-mode-hook
-                treemacs-mode-hook
-                eshell-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font Mono-10"))
 
@@ -176,15 +168,15 @@
   (setq doom-modeline-icon nil))
 
 
-(defun ansi-colorize-buffer ()
-  "This will help eliminate weird escape sequences during compilation of projects."
-  (let ((buffer-read-only nil))
-    (ansi-color-apply-on-region (point-min) (point-max))))
-
-(use-package ansi-color
-  :ensure t
-  :config
-  (add-hook 'compilation-filter-hook 'ansi-colorize-buffer))
+;(defun ansi-colorize-buffer ()
+;  "This will help eliminate weird escape sequences during compilation of projects."
+;  (let ((buffer-read-only nil))
+;    (ansi-color-apply-on-region (point-min) (point-max))))
+;
+;(use-package ansi-color
+;  :ensure t
+;  :config
+;  (add-hook 'compilation-filter-hook 'ansi-colorize-buffer))
 
 ;----------------------
 (use-package company
