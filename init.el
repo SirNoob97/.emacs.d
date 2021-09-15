@@ -33,6 +33,8 @@
 
 (update-load-path)
 
+(require 'init-functions)
+
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (show-paren-mode 1)
@@ -127,8 +129,6 @@
   :diminish
   :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
-         ("C-l" . ivy-alt-done)
-         ("TAB" . ivy-next-line)
          ("<backtab>" . ivy-previous-line)
          :map ivy-switch-buffer-map
          ("C-l" . ivy-done)
