@@ -36,7 +36,9 @@
 (require 'init-functions)
 (require 'init-keybindings)
 (require 'init-emacs-packages)
-
+(require 'init-use-package)
+(require-use-package)
+(require 'init-evil)
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 
@@ -54,22 +56,22 @@
 
 (global-set-key (kbd "<escape>") 'keyboard-scape-quit)
 
-(require 'package)
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("elpa" . "https://elpa.gnu.org/packages/")
-			  ("org" . "https://orgmode.org/elpa/")
-))
-
-(package-initialize)
-(unless package-archive-contents (package-refresh-contents))
-(unless (package-installed-p 'use-package) (package-install 'use-package))
+;(require 'package)
+;(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+;                         ("elpa" . "https://elpa.gnu.org/packages/")
+;			  ("org" . "https://orgmode.org/elpa/")
+;))
+;
+;(package-initialize)
+;(unless package-archive-contents (package-refresh-contents))
+;(unless (package-installed-p 'use-package) (package-install 'use-package))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(lsp-java-java-path "/home/martin/.sdkman/candidates/java/current/bin/java")
+ '(lsp-java-java-path "/home/martin/.sdkman/candidates/java/current/bin/java" t)
  '(package-selected-packages
    '(lsp-pyright exec-path-from-shell all-the-icons dash doom-modeline company-lsp xclip lsp-ui company evil-collection flycheck lsp-treemacs lsp-ivy which-key helpful ivy-rich counsel dap-mode lsp-java lsp-mode use-package cl-libify undo-tree s)))
 (custom-set-faces
@@ -88,8 +90,8 @@
 (setq kept-new-versions 12)
 (setq kept-old-versions 12)
 
-(require 'use-package)
-(setq use-package-always-ensure t)
+;(require 'use-package)
+;(setq use-package-always-ensure t)
 
 (use-package exec-path-from-shell :ensure t)
 (exec-path-from-shell-initialize)
@@ -100,22 +102,22 @@
   :config
   (which-key-mode))
 
-(use-package evil
-  :init
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-i-jump nil)
-  :config
-  (evil-mode 1)
-  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-
-  ;; Use visual line motions even outside of visual-line-mode buffers
-  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-
-  (evil-set-initial-state 'messages-buffer-mode 'normal)
-  (evil-set-initial-state 'dashboard-mode 'normal))
+;(use-package evil
+;  :init
+;  (setq evil-want-integration t)
+;  (setq evil-want-keybinding nil)
+;  (setq evil-want-C-u-scroll t)
+;  (setq evil-want-C-i-jump nil)
+;  :config
+;  (evil-mode 1)
+;  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+;
+;  ;; Use visual line motions even outside of visual-line-mode buffers
+;  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+;  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+;
+;  (evil-set-initial-state 'messages-buffer-mode 'normal)
+;  (evil-set-initial-state 'dashboard-mode 'normal))
 
 (use-package ivy
   :diminish
