@@ -5,7 +5,10 @@
 
 ;;; Code:
 
-(use-package flycheck :ensure t :init (global-flycheck-mode))
+(use-package flycheck
+  :ensure t
+  :defer 0
+  :init (global-flycheck-mode))
 
 (provide 'init-flycheck)
 
