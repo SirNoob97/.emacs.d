@@ -33,7 +33,7 @@
   "Switch back and forth between two buffers easily."
   (interactive)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
-(global-set-key (kbd "C-c l") 'sn-switch-last-buffer)
+(global-set-key (kbd "C-c b") 'sn-switch-last-buffer)
 
 (defun sn--increment-number (&optional arg)
   "Increment the number forward point by ARG."
