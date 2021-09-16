@@ -20,20 +20,17 @@
   (let ((coding-str (symbol-name buffer-file-coding-system)))
     (when (string-match "-\\(?:dos\\|mac\\)$" coding-str)
       (set-buffer-file-coding-system 'unix))))
-(global-set-key (kbd "C-c c u") 'sn-convert-to-unix-coding-system)
 
 (defun sn-save-all-buffers-silently ()
   "Save all modified buffers without prompting."
   (interactive)
   (save-some-buffers t)
   (message "Saved all buffers."))
-(global-set-key (kbd "C-c s") 'sn-save-all-buffers-silently)
 
 (defun sn-switch-last-buffer ()
   "Switch back and forth between two buffers easily."
   (interactive)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
-(global-set-key (kbd "C-c b") 'sn-switch-last-buffer)
 
 (defun sn--increment-number (&optional arg)
   "Increment the number forward point by ARG."
@@ -70,7 +67,6 @@ ARG may be passed as a numberic prefix."
 	     (define-key map (vector (append mods (list keys)))
 	       (lambda () (interactive) (sn-increment-number (abs arg))))))
 	 map)))))
-(global-set-key (kbd "C-c +") 'sn-increment-number)
 
 (defmacro sn-save-column(&rest body)
   "Helper to move a line(BODY)."
@@ -87,8 +83,6 @@ ARG may be passed as a numberic prefix."
   "Move the current line."
   (interactive)
   (sn-save-column (forward-line 1) (transpose-lines 1) (forward-line -1)))
-(global-set-key (kbd "M-p") 'sn-move-line-up)
-(global-set-key (kbd "M-n") 'sn-move-line-down)
 
 (defun sn-delete-current-file ()
   "Delete current file and kill the buffer."
@@ -97,7 +91,6 @@ ARG may be passed as a numberic prefix."
   (when (yes-or-no-p (format "Are you sure to delete this file? '%s'" (file-name-nondirectory buffer-file-name)))
     (delete-file (buffer-file-name) t)
     (kill-this-buffer)))
-(global-set-key (kbd "C-c f d") 'sn-delete-current-file)
 
 (defun sn-sudoedit (&optional arg)
   "Open current or ARG file as root."
@@ -106,7 +99,6 @@ ARG may be passed as a numberic prefix."
       (find-file (concat "/sudo:root@localhost:"
 			 (read-file-name "Find file as root: ")))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
-(global-key-binding (kbd "C-c f s"))
 
 (defun sn-rename-current-file (new-name)
   "Rename both current buffer and file to NEW-NAME."
@@ -120,7 +112,6 @@ ARG may be passed as a numberic prefix."
 	       (rename-file filename new-name 1))
 	     (rename-buffer new-name)
 	     (set-visited-file-name new-name)))))
-(global-set-key (kbd "C-c f r") 'sn-rename-current-file)
 
 (defun sn-copy-file-content (file)
   "Copy the FILE contents to the clipboard."
@@ -128,7 +119,6 @@ ARG may be passed as a numberic prefix."
   (with-current-buffer (find-file-noselect file)
     (kill-new (buffer-substring-no-properties (point-min) (point-max))))
   (message "Copied contents of '%s' to the clipboard" file))
-(global-set-key (kbd "C-c f y") 'sn-copy-file-content)
 
 (defun sn-copy-file-name ()
   "Copy the current file name to the clipboard."
@@ -140,14 +130,12 @@ ARG may be passed as a numberic prefix."
 	(kill-new filename)
 	(message "Copied '%s' to the clipboard." filename))
     (warn "Current buffer is not attached to a file!!")))
-(global-set-key (kbd "C-c f n") 'sn-copy-file-name)
 
 (defun sn-reload-init-file ()
   "Reload Emacs configuration."
   (interactive)
   (load user-init-file)
   (message "Emacs configuration reloaded ."))
-(global-set-key (kbd "C-c C-r") 'sn-reload-init-file)
 
 (provide 'init-functions)
 
