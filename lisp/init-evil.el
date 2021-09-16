@@ -6,6 +6,7 @@
 ;;; Code:
 
 (use-package evil
+  :defer 0
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
@@ -13,6 +14,7 @@
   (setq evil-want-C-i-jump nil)
   :config
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  (evil-mode))
 
 (provide 'init-evil)
 
