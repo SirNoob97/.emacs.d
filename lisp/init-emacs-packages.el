@@ -3,6 +3,8 @@
 ;;; Commentary:
 ;;; Load the configuration for some Emacs packages
 
+;;; Code:
+
 ;; Ansi colors
 (add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
 (defun sn-ansi-colorize-buffer ()
@@ -39,28 +41,6 @@
 ;; Show paren
 (add-hook 'after-init-hook 'show-paren-mode)
 
-;; Tab-bar
-(defun sn-tab-bar-select ()
-  "If no othert tab exists, create one and switch to it."
-  (interactive)
-  (let ((tabs (mapcar (lambda (tab)
-			(alist-get 'name tab))
-		      (tab-bar--tabs-recent))))
-    (cond ((eq tabs nil)
-	   (tab-new))
-	  ((eq (length tabs) 1)
-	   (tab-next))
-	  (t
-	   (tab-bar-switch-to-next-tab
-	    (completing-read "Select tab: " tabs nil t))))))
-(global-set-key (kbd "C-c t t") 'sn-tab-bar-select)
-
-(with-eval-after-load 'tab-bar-mode
-  (setq tab-bar-close-button-show nil)
-  (setq tab-bar-close-last-tab-choice 'tab-bar-mode-disable)
-  (tab-bar-history-mode 1))
-
 (provide 'init-emacs-packages)
 
-;;; Code:
 ;;; init-emacs-packages.el ends here
