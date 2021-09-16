@@ -1,4 +1,4 @@
-;;; init-use-package.el --- Load use-package -*- lexical-binding: t -*-
+;;; init-package.el --- Load use-package -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;; Load melpa and use-package setup
@@ -11,9 +11,9 @@
                            ("elpa" . "https://elpa.gnu.org/packages/")
 			   ("org" . "https://orgmode.org/elpa/")
 			   ))
-(setq package-enable-at-startup nil)
-
-(package-initialize)
+(unless (bound-and-true-p package--initialized)
+  (setq package-enable-at-startup nil)          ; To prevent initializing twice
+  (package-initialize))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -25,16 +25,12 @@
   (setq use-package-expand-minimally t)
   (setq use-package-enablen-imenu-support t))
 
-(eval-when-compile (require 'use-package))
+(eval-and-compile
+  (require 'use-package)
+  (require 'bind-key))
 
 (use-package diminish)
-(use-package bind-key)
 
-(defun require-use-package()
-  "Solving bug."
-  (interactive)
-  (require 'use-package))
+(provide 'init-package)
 
-(provide 'init-use-package)
-
-;;; init-use-package.el ends here
+;;; init-package.el ends here
