@@ -5,6 +5,7 @@
 
 ;;; Code:
 
+(global-set-key (kbd "<escape>") 'keyboard-scape-quit)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 (global-set-key (kbd "M-;") 'comment-line) ; comment-dwin by default

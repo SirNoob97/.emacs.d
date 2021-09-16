@@ -20,7 +20,7 @@
 ;; Add lisp to load-path
 (defun update-load-path (&rest _)
   "Update `load-path'."
-  (dolist (dir '("lisp" "site-lisp"))
+  (dolist (dir '("site-lisp" "lisp"))
     (push (expand-file-name dir user-emacs-directory) load-path)))
 
 (defun add-subdirs-to-load-path (&rest _)
@@ -28,79 +28,38 @@
   (let ((default-directory (expand-file-name "site-lisp" user-emacs-directory)))
     (normal-top-level-add-subdirs-to-load-path)))
 
-(advice-add #'package-initialize :after #'update-load-path)
-(advice-add #'package-initialize :after #'add-subdirs-to-load-path)
-
 (update-load-path)
 
+(require 'init-settings)
 (require 'init-functions)
 (require 'init-keybindings)
 (require 'init-emacs-packages)
-(require 'init-use-package)
-(require-use-package)
-(require 'init-evil)
-(set-language-environment "UTF-8")
-(set-default-coding-systems 'utf-8)
-
-(add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font Mono-10"))
-
-(load-theme 'wombat t)
-
-(setq scroll-step 4)
-(setq scroll-margin 2)
-(setq scroll-conservatively 4)
-(setq scroll-preserve-screen-position t)
-
-(fset 'yes-or-no-p 'y-or-n-p) ;; never have to type full word
-(setq confirm-kill-emacs 'y-or-n-p)
-
-(global-set-key (kbd "<escape>") 'keyboard-scape-quit)
-
-;(require 'package)
-;(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-;                         ("elpa" . "https://elpa.gnu.org/packages/")
-;			  ("org" . "https://orgmode.org/elpa/")
-;))
-;
-;(package-initialize)
-;(unless package-archive-contents (package-refresh-contents))
-;(unless (package-installed-p 'use-package) (package-install 'use-package))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(lsp-java-java-path "/home/martin/.sdkman/candidates/java/current/bin/java" t)
- '(package-selected-packages
-   '(lsp-pyright exec-path-from-shell all-the-icons dash doom-modeline company-lsp xclip lsp-ui company evil-collection flycheck lsp-treemacs lsp-ivy which-key helpful ivy-rich counsel dap-mode lsp-java lsp-mode use-package cl-libify undo-tree s)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
-(setq auto-save-timeout 5)
-
-(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
-(setq backup-by-copying t) ;; copy files, don't rename them.
-
-(setq delete-old-versions t)
-(setq kept-new-versions 12)
-(setq kept-old-versions 12)
-
-;(require 'use-package)
-;(setq use-package-always-ensure t)
+(require 'init-package)
 
 (use-package exec-path-from-shell :ensure t)
 (exec-path-from-shell-initialize)
 
-(use-package which-key
+;;; this is for evil mode
+(use-package xclip
   :defer 0
-  :diminish which-key-mode
-  :config
-  (which-key-mode))
+  :config (xclip-mode 1))
+
+(require 'init-doom-modeline)
+(require 'init-wich-key)
+(require 'init-evil)
+(require 'init-ivy-counsel)
+(require 'init-company)
+(require 'init-yasnippet)
+(require 'init-flycheck)
+(require 'init-dap-mode)
+(require 'init-treemacs)
+(require 'init-lsp-mode)
+(require 'init-lsp-ui)
+(require 'init-java)
+(require 'init-python)
+
+;(require 'use-package)
+;(setq use-package-always-ensure t)
 
 ;(use-package evil
 ;  :init
@@ -119,57 +78,6 @@
 ;  (evil-set-initial-state 'messages-buffer-mode 'normal)
 ;  (evil-set-initial-state 'dashboard-mode 'normal))
 
-(use-package ivy
-  :diminish
-  :bind (("C-s" . swiper)
-         :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)
-         ("C-j" . ivy-next-line)
-         ("C-k" . ivy-previous-line)
-         ("<backtab>" . ivy-previous-line)
-         :map ivy-switch-buffer-map
-         ("C-l" . ivy-done)
-         ("<backtab>" . ivy-previous-line)
-         ("C-d" . ivy-switch-buffer-kill)
-         :map ivy-reverse-i-search-map
-         ("C-k" . ivy-previous-line)
-         ("C-d" . ivy-reverse-i-search-kill))
-  :config
-  (ivy-mode 1))
-
-(use-package counsel
-  :bind (("C-M-j" . 'counsel-switch-buffer)
-         :map minibuffer-local-map
-         ("C-M-r" . 'counsel-minibuffer-history))
-  :custom
-  (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
-  :config
-  (counsel-mode 1))
-
-;(use-package helpful
-;  :commands (helpful-callable helpful-variable helpful-command helpful-key)
-;  :custom
-;  (counsel-describe-function-function #'helpful-callable)
-;  (counsel-describe-variable-function #'helpful-variable)
-;  :bind
-;  ([remap describe-function] . counsel-describe-function)
-;  ([remap describe-command] . helpful-command)
-;  ([remap describe-variable] . counsel-describe-variable)
-;  ([remap describe-key] . helpful-key))
-
-(use-package doom-modeline
-  :ensure t
-  :hook (after-init . doom-modeline-mode)
-  :config
-  ;(setq find-file-visit-truename t) ; to short symlinks
-  (setq inhibit-compacting-font-caches t)
-  (setq doom-modeline-buffer-file-name-style 'file-name)
-  (setq doom-modeline-unicode-fallback nil)
-  (setq doom-modeline-gnus nil)
-  (setq doom-modeline-irc nil)
-  (setq doom-modeline-icon nil))
-
-
 ;(defun ansi-colorize-buffer ()
 ;  "This will help eliminate weird escape sequences during compilation of projects."
 ;  (let ((buffer-read-only nil))
@@ -181,41 +89,6 @@
 ;  (add-hook 'compilation-filter-hook 'ansi-colorize-buffer))
 
 ;----------------------
-(use-package company
-  :bind (:map company-active-map
-              ("TAB" . company-complete-common-or-cycle)
-	      ("<backtab>" . company-select-previous))
-  :custom
-  (company-idle-delay 0.0)
-  :config
-  (add-hook 'after-init-hook 'global-company-mode)
-  (company-mode))
-
-(use-package yasnippet :config (yas-global-mode))
-(use-package yasnippet-snippets :ensure t)
-
-(use-package flycheck :ensure t :init (global-flycheck-mode))
-
-(use-package dap-mode
-  :after lsp-mode
-  :bind (:map lsp-mode-map
-            ("<f5>" . dap-debug)
-            ("M-<f5>" . dap-hydra))
-  :config
-  (dap-mode t)
-  (dap-ui-mode t)
-  (dap-tooltip-mode 1)
-  (tooltip-mode 1)
-  (dap-register-debug-template
-   "localhost:5005"
-   (list :type "java"
-         :request "attach"
-         :hostName "localhost"
-         :port 5005))
-  )
-(use-package dap-java
-  :ensure nil
-  :after (lsp-java))
 
 
 ;(use-package dap-mode
@@ -230,83 +103,6 @@
 ;  :hook ((dap-mode . dap-ui-mode)
 ;    (dap-session-created . (lambda (&_rest) (dap-hydra)))
 ;    (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
-
-(use-package lsp-treemacs
-  :after (lsp-mode treemacs)
-  :ensure t
-  :commands lsp-treemacs-errors-list
-  :bind (:map lsp-mode-map
-         ("M-9" . lsp-treemacs-errors-list)))
-
-(use-package treemacs
-  :ensure t
-  :commands (treemacs)
-  :after (lsp-mode))
-
-(use-package lsp-ui
-  :ensure t
-  :requires lsp-mode flycheck
-  :bind (:map lsp-ui-mode-map
-         ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-         ([remap xref-find-references] . lsp-ui-peek-find-references))
-  :init
-  (setq lsp-ui-peek-always-show t)
-  (setq lsp-ui-doc-delay 1.5
-	lsp-ui-doc-show-with-cursor nil
-	lsp-ui-doc-show-with-mouse nil
-	lsp-ui-doc-include-signature t
-	lsp-ui-doc-position 'bottom
-	lsp-ui-doc-max-width 100)
-  (setq lsp-ui-sideline-ignore-duplicate t
-	lsp-ui-sideline-show-diagnostics t)
-  :config
-  (define-key lsp-ui-mode-map (kbd "C-c l k") #'lsp-ui-doc-show)
-  (define-key lsp-ui-mode-map (kbd "C-c l s") #'lsp-ui-doc-hide))
-
-(use-package lsp-mode
-  :ensure t
-  :hook (
-   (lsp-mode . lsp-enable-which-key-integration)
-   (java-mode . #'lsp-deferred))
-  :init
-  (setq
-    lsp-keymap-prefix "C-c l" ; this is for which-key integration documentation, need to use lsp-mode-map
-    lsp-enable-file-watchers nil
-    read-process-output-max (* 1024 1024)  ; 1 mb
-    lsp-idle-delay 0.500)
-  (setq lsp-headerline-breadcrumb-enable nil)
-  :config
-  (setq lsp-enable-on-type-formatting nil)
-  (setq gc-cons-threshold 100000000)
-  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
-
-(use-package lsp-java
-  :ensure t
-  :init
-  (setq lsp-java-java-path "/home/martin/.sdkman/candidates/java/current/bin/java")
-  (setq lsp-java-vmargs
-        (list
-         "-noverify"
-         "-Xmx2G"
-         "-XX:+UseG1GC"
-         "-XX:+UseStringDeduplication"
-         "-javaagent:/home/martin/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar"))
-  :config
-  (add-hook 'java-mode-hook 'lsp)
-  (add-hook 'java-mode-hook 'flycheck-mode)
-  (add-hook 'java-mode-hook 'company-mode)
-  (add-hook 'java-mode-hook (lambda ()
-                            (setq c-basic-offset 2
-                                  tab-width 2
-                                  indent-tabs-mode t))))
-
-(use-package lsp-pyright
-  :ensure t
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (lsp)))
-  :config (setq lsp-pyright-typechecking-mode "strict")
-  (setq lsp-pyright-log-level "error"))
 
 ;(use-package lsp-mode
 ;  :init
@@ -443,8 +239,5 @@
 ;  )
 
 ;----------------------
-
-(use-package xclip
-  :config (xclip-mode 1))
 
 ;;; init.el ends here
