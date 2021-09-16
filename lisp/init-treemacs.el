@@ -8,15 +8,22 @@
 (use-package lsp-treemacs
   :after (lsp-mode treemacs)
   :ensure t
-  :commands lsp-treemacs-errors-list
-  :bind (:map lsp-mode-map
-         ("M-9" . lsp-treemacs-errors-list)))
+  :commands lsp-treemacs-errors-list)
 
 (use-package treemacs
   :ensure t
   :defer 0
   :commands (treemacs)
-  :after (lsp-mode))
+  :bind (:map global-map
+              ("C-c t d" . treemacs-delete-other-windows)
+              ("C-c t t" . treemacs)
+              ("C-c t b" . treemacs-bookmark)
+              ("C-c t f" . treemacs-find-file)
+	      )
+  :config
+  (setq treemacs-no-png-images t))
+
+(require 'treemacs-evil)
 
 (provide 'init-treemacs)
 
