@@ -190,39 +190,6 @@
 ;  :demand t
 ;  :after (lsp lsp-mode)
 
-;(use-package dap-mode
-;  :after lsp-mode
-;  :config
-;  (dap-mode t)
-;  (dap-ui-mode t)
-;  (dap-tooltip-mode 1)
-;  (tooltip-mode 1)
-;  (dap-register-debug-template
-;   "localhost:5005"
-;   (list :type "java"
-;         :request "attach"
-;         :hostName "localhost"
-;         :port 5005))
-;  ;(dap-register-debug-template
-;  ; "lxd"
-;  ; (list :type "java"
-;  ;       :request "attach"
-;  ;       :hostName "x.x.x.x"
-;  ;       :port 5005))
-;  )
-;(use-package dap-mode
-;  :ensure t
-;  :after (lsp-mode)
-;  :functions dap-hydra/nil
-;  :config
-;  (require 'dap-java)
-;  :bind (:map lsp-mode-map
-;         ("<f5>" . dap-debug)
-;         ("M-<f5>" . dap-hydra))
-;  :hook ((dap-mode . dap-ui-mode)
-;    (dap-session-created . (lambda (&_rest) (dap-hydra)))
-;    (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
-;
 ;(use-package dap-java :ensure nil
 ;
 ;  ;; The :bind here makes use-package fail to lead the dap-java block!
@@ -241,3 +208,16 @@
 ;----------------------
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(doom-modeline yasnippet-snippets xclip which-key use-package lsp-ui lsp-pyright lsp-java lsp-ivy ivy-rich helpful flycheck exec-path-from-shell evil-collection diminish counsel company cl-libify)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
