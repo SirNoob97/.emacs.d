@@ -8,7 +8,7 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
-(add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font Mono-10"))
+(add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font Mono-11"))
 (load-theme 'wombat t)
 (fset 'yes-or-no-p 'y-or-n-p) ;; never have to type full word
 (set-default 'truncate-lines t)
