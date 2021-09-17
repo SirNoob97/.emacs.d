@@ -1,5 +1,6 @@
 /auto-save-list/
 /.cache/
+/custom.el
 /eclipse*/
 /elpa/
 /url/

@@ -17,6 +17,13 @@
 	    (setq gc-cons-threshold 800000
 		  gc-cons-percentage 0.1)))
 
+;; Custom-file
+(defun load-custom-file ()
+  "Set `custom-file'."
+  (interactive)
+  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+  (load custom-file))
+
 ;; Add lisp to load-path
 (defun update-load-path (&rest _)
   "Update `load-path'."
@@ -29,6 +36,7 @@
     (normal-top-level-add-subdirs-to-load-path)))
 
 (update-load-path)
+(load-custom-file)
 
 (require 'init-settings)
 (require 'init-functions)
@@ -53,8 +61,8 @@
 (require 'init-flycheck)
 (require 'init-dap-mode)
 (require 'init-treemacs)
-(require 'init-lsp-mode)
 (require 'init-lsp-ui)
+(require 'init-lsp-mode)
 (require 'init-java)
 (require 'init-python)
 
@@ -208,16 +216,3 @@
 ;----------------------
 
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(doom-modeline yasnippet-snippets xclip which-key use-package lsp-ui lsp-pyright lsp-java lsp-ivy ivy-rich helpful flycheck exec-path-from-shell evil-collection diminish counsel company cl-libify)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
