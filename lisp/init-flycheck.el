@@ -8,7 +8,9 @@
 (use-package flycheck
   :ensure t
   :defer 0
-  :init (global-flycheck-mode))
+  :hook (after-init . global-flycheck-mode)
+  :init
+  (setq flycheck-check-syntax-automatically '(mode-enabled save)))
 
 (provide 'init-flycheck)
 
