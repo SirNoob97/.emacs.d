@@ -37,6 +37,19 @@
 (setq save-interprogram-paste-before-kill t)
 (setq backward-delete-char-untabify-method 'all)
 (setq create-lockfiles nil)
+
+;; Line numbers
+(global-display-line-numbers-mode t)
+(setq display-line-numbers-type 'relative)
+; disable line numbers for some modes
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                shell-mode-hook
+                treemacs-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+
 (setq sentence-end-double-space nil)
 (setq require-final-newline t)
 
