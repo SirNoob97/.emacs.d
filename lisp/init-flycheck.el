@@ -8,9 +8,21 @@
 (use-package flycheck
   :ensure t
   :defer 0
+  :bind (:map flycheck-mode-map
+	 ("M-]" . flycheck-next-error)
+	 ("M-[" . flycheck-previous-error)
+	 )
   :hook (after-init . global-flycheck-mode)
   :init
   (setq flycheck-check-syntax-automatically '(mode-enabled save)))
+
+(add-to-list 'display-buffer-alist
+             `(,(rx bos "*Flycheck errors*" eos)
+               (display-buffer-reuse-window
+               display-buffer-in-side-window)
+              (side            . bottom)
+              (reusable-frames . visible)
+              (window-height   . 0.25)))
 
 (provide 'init-flycheck)
 
