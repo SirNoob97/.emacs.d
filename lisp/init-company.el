@@ -8,9 +8,7 @@
 (use-package company
   :ensure t
   :defer 0
-  :bind (:map global-map
-	      ("C-SPC" . company-complete)
-	 :map company-active-map
+  :bind (:map company-active-map
               ("<tab>" . company-select-next)
 	      ("<backtab>" . company-select-previous))
   :init
