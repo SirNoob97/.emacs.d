@@ -16,19 +16,6 @@
 ;; reload if file changed on disk
 (add-hook 'after-init-hook 'global-auto-revert-mode)
 
-;; column numbers
-(add-hook 'after-init-hook 'column-number-mode)
-; disable line numbers for some modes
-(dolist (mode '(org-mode-hook
-                term-mode-hook
-                shell-mode-hook
-                treemacs-mode-hook
-                eshell-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
-
-;; line numbers
-;(setq display-line-numbers 'relative)
-
 ;; Eldoc
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 (add-hook 'lisp-interaction-mode-hook 'eldoc-mode)
