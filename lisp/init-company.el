@@ -8,14 +8,16 @@
 (use-package company
   :ensure t
   :defer 0
-  :bind (:map company-active-map
-              ("TAB" . company-complete-common-or-cycle)
+  :bind (:map global-map
+	      ("C-SPC" . company-complete)
+	 :map company-active-map
+              ("<tab>" . company-select-next)
 	      ("<backtab>" . company-select-previous))
-  :custom
-  (company-idle-delay 0.0)
+  :init
+  (setq company-idle-delay 0.0)
   :config
-  (add-hook 'after-init-hook 'global-company-mode)
-  (company-mode))
+  (global-company-mode)
+  )
 
 (provide 'init-company)
 
