@@ -66,26 +66,6 @@
 (require 'init-java)
 (require 'init-python)
 
-;(require 'use-package)
-;(setq use-package-always-ensure t)
-
-;(use-package evil
-;  :init
-;  (setq evil-want-integration t)
-;  (setq evil-want-keybinding nil)
-;  (setq evil-want-C-u-scroll t)
-;  (setq evil-want-C-i-jump nil)
-;  :config
-;  (evil-mode 1)
-;  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-;
-;  ;; Use visual line motions even outside of visual-line-mode buffers
-;  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-;  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-;
-;  (evil-set-initial-state 'messages-buffer-mode 'normal)
-;  (evil-set-initial-state 'dashboard-mode 'normal))
-
 ;(defun ansi-colorize-buffer ()
 ;  "This will help eliminate weird escape sequences during compilation of projects."
 ;  (let ((buffer-read-only nil))
@@ -132,19 +112,6 @@
 ;        lsp-modeline-code-actions-enable nil
 ;        lsp-modeline-diagnostics-enable nil)
 
-;(use-package lsp-ui
-;  :bind (:map lsp-ui-mode-map
-;         ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-;         ([remap xref-find-references] . lsp-ui-peek-find-references))
-;  :init
-;  (setq lsp-prefer-flymake nil
-;	lsp-ui-doc-position 'bottom
-;	lsp-ui-doc-max-width 100
-;        lsp-ui-doc-delay 5.0
-;        lsp-ui-sideline-enable nil
-;        lsp-ui-sideline-show-symbol nil
-;	lsp-ui-flycheck-enable t)
-;  :after (lsp-mode))
 
 ;(defun default-java-code-style-hook()
 ;  (setq c-basic-offset 2
