@@ -58,6 +58,7 @@
 (require 'init-doom-modeline)
 (require 'init-wich-key)
 (require 'init-ivy-counsel)
+(require 'init-groovy-mode)
 (require 'init-company)
 (require 'init-yasnippet)
 (require 'init-flycheck)
