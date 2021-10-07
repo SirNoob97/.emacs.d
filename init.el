@@ -44,6 +44,9 @@
 (require 'init-emacs-packages)
 (require 'init-package)
 
+(require 'init-yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
 (use-package exec-path-from-shell :ensure t)
 (exec-path-from-shell-initialize)
 
