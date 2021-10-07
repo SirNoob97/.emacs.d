@@ -38,9 +38,13 @@
 (setq backward-delete-char-untabify-method 'all)
 (setq create-lockfiles nil)
 
+(setq-default c-basic-offset 2)
+(setq-default tab-width 2)
+(setq-default indent-tabs-mode nil)
+
 ;; Line numbers
 (global-display-line-numbers-mode t)
-(setq display-line-numbers-type 'relative)
+(setq-default display-line-numbers-type 'relative)
 ; disable line numbers for some modes
 (dolist (mode '(org-mode-hook
                 term-mode-hook
