@@ -54,7 +54,6 @@
 
 (require 'init-doom-modeline)
 (require 'init-wich-key)
-(require 'init-evil)
 (require 'init-ivy-counsel)
 (require 'init-company)
 (require 'init-yasnippet)

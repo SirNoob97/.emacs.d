@@ -12,9 +12,7 @@
 	 ("M-]" . flycheck-next-error)
 	 ("M-[" . flycheck-previous-error)
 	 )
-  :hook (after-init . global-flycheck-mode)
-  :init
-  (setq flycheck-check-syntax-automatically '(mode-enabled save)))
+  :hook (after-init . global-flycheck-mode))
 
 (add-to-list 'display-buffer-alist
              `(,(rx bos "*Flycheck errors*" eos)
