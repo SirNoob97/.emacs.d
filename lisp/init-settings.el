@@ -12,6 +12,7 @@
 (load-theme 'wombat t)
 (fset 'yes-or-no-p 'y-or-n-p) ;; never have to type full word
 (set-default 'truncate-lines t)
+(windmove-default-keybindings 'meta)
 
 (setq-default buffer-file-coding-system 'utf-8-unix)
 (setq coding-system-for-read 'utf-8-unix)
