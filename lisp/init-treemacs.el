@@ -23,8 +23,6 @@
   :config
   (setq treemacs-no-png-images t))
 
-;; (require 'treemacs-evil)
-
 (provide 'init-treemacs)
 
 ;;; init-treemacs.el ends here
