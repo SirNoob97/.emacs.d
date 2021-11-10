@@ -50,7 +50,6 @@
 (use-package exec-path-from-shell :ensure t)
 (exec-path-from-shell-initialize)
 
-;;; this is for evil mode
 (use-package xclip
   :defer 0
   :config (xclip-mode 1))
@@ -79,111 +78,5 @@
 ;  :ensure t
 ;  :config
 ;  (add-hook 'compilation-filter-hook 'ansi-colorize-buffer))
-
-;----------------------
-
-
-;(use-package dap-mode
-;  :ensure t
-;  :after (lsp-mode)
-;  :functions dap-hydra/nil
-;  :config
-;  (require 'dap-java)
-;  :bind (:map lsp-mode-map
-;         ("<f5>" . dap-debug)
-;         ("M-<f5>" . dap-hydra))
-;  :hook ((dap-mode . dap-ui-mode)
-;    (dap-session-created . (lambda (&_rest) (dap-hydra)))
-;    (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
-
-;(use-package lsp-mode
-;  :init
-;  (setq lsp-keymap-prefix "C-c l")
-;  (setq lsp-headerline-breadcrumb-segments '(file symbols))
-;  (setq lsp-prefer-flymake nil)
-;  :demand t
-;  :bind
-;  (:map lsp-mode-map
-;        (("M-RET" . lsp-execute-code-action)))
-;  :config
-;  (setq lsp-inhibit-message t
-;	lsp-completion-enable-additional-text-edit nil
-;        lsp-eldoc-render-all nil
-;        lsp-enable-file-watchers nil
-;        lsp-enable-symbol-highlighting nil
-;        lsp-headerline-breadcrumb-enable nil
-;        lsp-highlight-symbol-at-point nil
-;        lsp-modeline-code-actions-enable nil
-;        lsp-modeline-diagnostics-enable nil)
-
-
-;(defun default-java-code-style-hook()
-;  (setq c-basic-offset 2
-;        c-label-offset 0
-;        tab-width 2
-;        indent-tabs-mode nil
-;        require-final-newline nil))
-;(add-hook 'java-mode-hook 'default-java-code-style-hook)
-;
-;(defun custom-java-mode-hook ()
-;  (auto-fill-mode)
-;  (flycheck-mode)
-;  (subword-mode)
-;  (yas-minor-mode)
-;  (set-fringe-style '(8 . 0))
-;
-;  ;; Fix indentation for anonymous classes
-;  (c-set-offset 'substatement-open 0)
-;  (if (assoc 'inexpr-class c-offsets-alist)
-;      (c-set-offset 'inexpr-class 0))
-;
-;  ;; Indent arguments on the next line as indented body.
-;  (c-set-offset 'arglist-intro '++))
-;(add-hook 'java-mode-hook 'custom-java-mode-hook)
-;
-;
-;(use-package lsp-java
-;  :init
-;  (setq lsp-java-vmargs
-;        (list
-;         "-noverify"
-;         "-Xmx3G"
-;         "-XX:+UseG1GC"
-;         "-XX:+UseStringDeduplication"
-;         "-javaagent:/home/martin/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar"
-;         )
-;
-;	lsp-file-watch-ignored '(".idea" "node_modules" ".git" ".hg" "build")
-;	
-;        ;; Don't organise imports on save
-;        lsp-java-save-action-organize-imports nil
-;
-;        ;; Fetch less results from the Eclipse server
-;        lsp-java-completion-max-results 20
-;
-;        lsp-java-java-path "/home/martin/.sdkman/candidates/java/current/bin/java"
-;        )
-;
-;  :config
-;  (add-hook 'java-mode-hook #'lsp))
-;  :demand t
-;  :after (lsp lsp-mode)
-
-;(use-package dap-java :ensure nil
-;
-;  ;; The :bind here makes use-package fail to lead the dap-java block!
-;  ;; :bind
-;  ;; (("C-c R" . dap-java-run-test-class)
-;  ;;  ("C-c d" . dap-java-debug-test-method)
-;  ;;  ("C-c r" . dap-java-run-test-method)
-;  ;;  )
-;
-;  :config
-;  (global-set-key (kbd "<f7>") 'dap-step-in)
-;  (global-set-key (kbd "<f8>") 'dap-next)
-;  (global-set-key (kbd "<f9>") 'dap-continue)
-;  )
-
-;----------------------
 
 ;;; init.el ends here
