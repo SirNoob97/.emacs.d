@@ -47,6 +47,11 @@
 (require 'init-yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
+(use-package iedit
+  :ensure t
+  :defer 0
+  :config (iedit-mode 1))
+
 (use-package exec-path-from-shell :ensure t)
 (exec-path-from-shell-initialize)
 
