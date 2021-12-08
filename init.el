@@ -43,6 +43,7 @@
 (require 'init-keybindings)
 (require 'init-emacs-packages)
 (require 'init-package)
+(require 'init-theme)
 
 (require 'init-yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
