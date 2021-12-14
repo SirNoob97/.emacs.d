@@ -17,6 +17,9 @@
          "-XX:+UseG1GC"
          "-XX:+UseStringDeduplication"
          "-javaagent:/home/martin/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar"))
+  (setq lsp-java-configuration-runtimes '[(:name "Java 11" :path "/home/martin/.sdkman/candidates/java/11.0.11.j9-adpt/")
+                                          (:name "Java 16" :path "/home/martin/.sdkman/candidates/java/16.0.1.j9-adpt/")
+                                          ])
   :config
   (add-hook 'java-mode-hook 'lsp)
   (add-hook 'java-mode-hook 'flycheck-mode)
