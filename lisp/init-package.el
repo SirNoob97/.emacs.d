@@ -8,9 +8,9 @@
 (require 'package)
 (require 'cl-lib)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                           ("elpa" . "https://elpa.gnu.org/packages/")
-			   ("org" . "https://orgmode.org/elpa/")
-			   ))
+                         ("elpa" . "https://elpa.gnu.org/packages/")
+			                   ("org" . "https://orgmode.org/elpa/")
+			                   ))
 (unless (bound-and-true-p package--initialized)
   (setq package-enable-at-startup nil)          ; To prevent initializing twice
   (package-initialize))
