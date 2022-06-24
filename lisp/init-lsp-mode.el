@@ -4,6 +4,12 @@
 ;;; Load lsp mode configuration
 
 ;;; Code:
+;;; init-lsp-mode.el --- Load lsp mode configuration -*- lexical-binding: t -*-
+
+;;; Commentary:
+;;; Load lsp mode configuration
+
+;;; Code:
 
 (use-package lsp-mode
   :ensure t
