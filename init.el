@@ -73,6 +73,7 @@
 (require 'init-lsp-mode)
 (require 'init-java)
 (require 'init-typescript)
+(require 'init-angular)
 (require 'init-python)
 
 ;(defun ansi-colorize-buffer ()
