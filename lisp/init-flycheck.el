@@ -12,6 +12,8 @@
 	 ("M-]" . flycheck-next-error)
 	 ("M-[" . flycheck-previous-error)
 	 )
+  :init
+  (setq-default flycheck-emacs-lisp-load-path 'inherit)
   :hook (after-init . global-flycheck-mode))
 
 (add-to-list 'display-buffer-alist
