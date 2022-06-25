@@ -56,6 +56,7 @@
 
 (setq sentence-end-double-space nil)
 (setq require-final-newline t)
+(setq help-window-select t)
 
 (provide 'init-settings)
 
