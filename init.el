@@ -51,8 +51,7 @@
 
 (use-package iedit
   :ensure t
-  :defer 0
-  :config (iedit-mode 1))
+  :defer 0)
 
 (use-package exec-path-from-shell :ensure t)
 (exec-path-from-shell-initialize)
