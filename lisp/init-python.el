@@ -10,9 +10,15 @@
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp)))
-  :config (setq lsp-pyright-typechecking-mode "strict")
+  :config
   (setq lsp-pyright-log-level "error"))
+
+;; There's also blacken if you like it better.
+(use-package yapfify
+  :ensure t
+  :defer t
+  :hook (python-mode . yapf-mode))
 
 (provide 'init-python)
 
-;;; init-python ends here
+;;; init-python.el ends here
