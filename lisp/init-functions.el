@@ -137,6 +137,33 @@ ARG may be passed as a numberic prefix."
   (load user-init-file)
   (message "Emacs configuration reloaded ."))
 
+(defun sn-surround-with-quotes ()
+  "Enclose the word under cursor in quotes."
+  (interactive)
+  (forward-word)
+  (backward-word)
+  (insert "\"")
+  (forward-word)
+  (insert "\""))
+
+(defun sn-surround-with-single-quotes ()
+  "Enclose the word under cursor in single quotes."
+  (interactive)
+  (forward-word)
+  (backward-word)
+  (insert "'")
+  (forward-word)
+  (insert "'"))
+
+(defun sn-surround-with-backquotes ()
+  "Enclose the word under cursor in backquotes."
+  (interactive)
+  (forward-word)
+  (backward-word)
+  (insert "`")
+  (forward-word)
+  (insert "`"))
+
 (provide 'init-functions)
 
 ;;; init-functions.el ends here

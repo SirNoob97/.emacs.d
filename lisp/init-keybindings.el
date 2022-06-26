@@ -19,7 +19,6 @@
 (global-set-key (kbd "C-c f n") 'sn-copy-file-name)
 (global-set-key (kbd "C-c C-r") 'sn-reload-init-file)
 
-(global-set-key (kbd "<escape>") 'keyboard-scape-quit)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 (global-set-key (kbd "M-;") 'comment-line) ; comment-dwin by default
@@ -28,6 +27,10 @@
 (global-set-key (kbd "C-c e f") 'eval-defun)
 (global-set-key (kbd "C-c n") 'next-buffer)
 (global-set-key (kbd "C-c p") 'previous-buffer)
+
+(global-set-key (kbd "M-\"") 'sn-surround-with-quotes)
+(global-set-key (kbd "M-'") 'sn-surround-with-single-quotes)
+(global-set-key (kbd "M-`") 'sn-surround-with-backquotes)
 
 (provide 'init-keybindings)
 
