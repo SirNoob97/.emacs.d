@@ -8,14 +8,14 @@
 (use-package company
   :ensure t
   :defer 0
-  :bind (:map company-active-map
-              ("<tab>" . company-select-next)
-	      ("<backtab>" . company-select-previous))
-  :init
-  (setq company-idle-delay 0.0)
+  :bind (("C-<tab>" . company-complete)
+         :map company-active-map
+         ("<tab>" . company-select-next)
+         ("<backtab>" . company-select-previous))
   :config
-  (global-company-mode)
-  )
+  (setq company-idle-delay nil)
+  (setq company-insertion-on-trigger t)
+  (global-company-mode))
 
 (provide 'init-company)
 
