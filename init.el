@@ -74,6 +74,7 @@
 (require 'init-java)
 (require 'init-typescript)
 (require 'init-emmet)
+(require 'init-web-mode)
 (require 'init-python)
 
 ;(defun ansi-colorize-buffer ()
