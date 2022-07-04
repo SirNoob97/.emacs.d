@@ -44,7 +44,7 @@
 
 ;; Line numbers
 (global-display-line-numbers-mode t)
-(setq-default display-line-numbers-type 'relative)
+;(setq-default display-line-numbers-type 'relative)
 ; disable line numbers for some modes
 (dolist (mode '(org-mode-hook
                 term-mode-hook
