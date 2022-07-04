@@ -14,7 +14,9 @@
          ("<backtab>" . company-select-previous))
   :config
   (setq company-idle-delay nil)
-  (setq company-insertion-on-trigger t)
+  (setq company-selection-wrap-around t)
+  (setq company-tooltip-flip-when-above t)
+  (setq company-tooltip-align-annotations t)
   (global-company-mode))
 
 (provide 'init-company)
