@@ -43,8 +43,8 @@
 (require 'init-keybindings)
 (require 'init-emacs-packages)
 (require 'init-package)
-(require 'init-theme)
-(load-theme 'doom-gruvbox)
+(require 'init-themes)
+(load-theme 'dracula)
 
 (require 'init-yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
