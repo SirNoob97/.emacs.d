@@ -12,6 +12,11 @@
   (setq lsp-java-java-path "/home/martin/.sdkman/candidates/java/current/bin/java")
   (setq lsp-java-vmargs
         (list
+         "-Declipse.application=org.eclipse.jdt.ls.core.id1"
+         "-Dosgi.bundles.defaultStartLevel=4"
+         "-Declipse.product=org.eclipse.jdt.ls.core.product"
+         "-Dlog.protocol=true"
+         "-Dlog.level=ALL"
          "-noverify"
          "-Xmx1G"
          "-XX:+UseG1GC"
