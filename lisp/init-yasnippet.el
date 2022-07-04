@@ -9,7 +9,8 @@
 (use-package yasnippet
   :ensure t
   :defer 0
-  :config (yas-global-mode))
+  :hook (prog-mode . yas-minor-mode)
+  :commands (yas-reload-all))
 
 (use-package yasnippet-snippets :ensure t)
 
