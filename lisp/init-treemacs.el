@@ -7,13 +7,11 @@
 
 (use-package lsp-treemacs
   :after (lsp-mode treemacs)
-  :ensure t
-  :commands lsp-treemacs-errors-list)
+  :ensure t)
 
 (use-package treemacs
   :ensure t
   :defer 0
-  :commands (treemacs)
   :bind (:map global-map
               ("C-c t d" . treemacs-delete-other-windows)
               ("C-c t t" . treemacs)
