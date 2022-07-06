@@ -206,7 +206,13 @@
 (use-package evil
   :ensure t
   :defer 1
-  :config (evil-mode t))
+  :init
+  (setq evil-want-keybinding nil)
+  (setq evil-want-integration nil)
+  (setq evil-undo-system 'undo-redo)
+  :config
+  (evil-mode t)
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state))
 
 (use-package company
   :ensure t
