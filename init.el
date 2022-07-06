@@ -135,28 +135,25 @@
 (use-package diminish)
 
 (use-package spacemacs-theme
-  :ensure t
-  :defer 0)
+  :ensure t)
 
 (use-package ample-theme
-  :ensure t
-  :defer 0)
+  :ensure t)
 
 (use-package dracula-theme
-  :ensure t
-  :defer 0)
+  :ensure t)
 
 (load-theme 'dracula)
 
 (use-package iedit
-  :ensure t
-  :defer 0)
+  :defer 1
+  :ensure t)
 
 (use-package exec-path-from-shell :ensure t)
 (exec-path-from-shell-initialize)
 
 (use-package xclip
-  :defer 0
+  :ensure t
   :config (xclip-mode 1))
 
 (use-package doom-modeline
@@ -172,7 +169,6 @@
   (setq doom-modeline-icon nil))
 
 (use-package which-key
-  :defer 0
   :diminish which-key-mode
   :config
   (which-key-mode))
@@ -194,16 +190,16 @@
          ("C-k" . ivy-previous-line)
          ("C-d" . ivy-reverse-i-search-kill))
   :config
-  (ivy-mode 1))
+  (ivy-mode t))
 
 (use-package counsel
   :ensure t
-  :defer 0
+  :defer 1
   :bind (("C-M-j" . 'counsel-switch-buffer)
          :map minibuffer-local-map
          ("C-M-r" . 'counsel-minibuffer-history))
   :config
-  (counsel-mode))
+  (counsel-mode t))
 
 (use-package company
   :ensure t
