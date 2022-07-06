@@ -280,6 +280,14 @@
     :config
     (counsel-mode t))
 #+end_src
+
+** Evil Mode
+
+#+begin_src emacs-lisp
+  (use-package evil
+    :ensure t
+    :defer 1
+    :config (evil-mode t))
 #+end_src
 
 * Software Development

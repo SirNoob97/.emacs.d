@@ -201,6 +201,11 @@
   :config
   (counsel-mode t))
 
+(use-package evil
+  :ensure t
+  :defer 1
+  :config (evil-mode t))
+
 (use-package company
   :ensure t
   :defer 0
