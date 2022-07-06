@@ -171,6 +171,7 @@
 
 (use-package which-key
   :diminish which-key-mode
+  :defer 1
   :config
   (which-key-mode))
 
