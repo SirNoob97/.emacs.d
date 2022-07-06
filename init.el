@@ -1,9 +1,10 @@
-(setq gc-cons-percentage 0.6
-      gc-cons-threshold most-positive-fixnum)
-(add-hook 'emacs-startup-hook
-    (lambda ()
-      (setq gc-cons-threshold 800000
-      gc-cons-percentage 0.1)))
+;;; -*- lexical-binding: t -*-
+  (setq gc-cons-percentage 0.6
+        gc-cons-threshold most-positive-fixnum)
+  (add-hook 'emacs-startup-hook
+      (lambda ()
+        (setq gc-cons-threshold 800000
+        gc-cons-percentage 0.1)))
 
 (defun load-custom-file ()
   "Set `custom-file'."
