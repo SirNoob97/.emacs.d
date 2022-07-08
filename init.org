@@ -218,15 +218,16 @@
 
 #+begin_src emacs-lisp
   (use-package spacemacs-theme
-    :ensure t)
-
-  (use-package ample-theme
-    :ensure t)
+    :ensure t
+    :init
+    (setq spacemacs-theme-comment-bg nil)
+    (setq spacemacs-theme-custom-colors '((cblk-bg . "#292b2e")
+                                          (cblk-ln-bg . "#292b2e"))))
 
   (use-package dracula-theme
     :ensure t)
 
-  (load-theme 'dracula)
+  (load-theme 'spacemacs-dark)
 #+end_src
 
 ** Iedit
