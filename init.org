@@ -318,11 +318,17 @@
     :defer 1
     :init
     (setq evil-want-keybinding nil)
-    (setq evil-want-integration nil)
+    (setq evil-want-integration t)
     (setq evil-undo-system 'undo-redo)
     :config
     (evil-mode t)
     (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state))
+
+  (use-package evil-collection
+    :ensure t
+    :after evil
+    :init
+    (evil-collection-init))
 #+end_src
 
 * Software Development
