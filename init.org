@@ -210,6 +210,11 @@
        (python . t)))
 
     (push '("conf-unix" . conf-unix) org-src-lang-modes))
+
+  (use-package org-bullets
+    :hook (org-mode . org-bullets-mode))
+#+end_src
+
 * Awesome Packages
 
 ** Themes
