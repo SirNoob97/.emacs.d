@@ -338,7 +338,7 @@
 #+begin_src emacs-lisp
   (use-package company
     :ensure t
-    :defer 0
+    :hook ((java-mode typescript-mode python-mode) . company-mode)
     :bind (("C-<tab>" . company-complete)
            :map company-active-map
            ("<tab>" . company-select-next)
@@ -356,7 +356,6 @@
 #+begin_src emacs-lisp
   (use-package yasnippet
     :ensure t
-    :defer 0
     :hook (prog-mode . yas-minor-mode)
     :commands (yas-reload-all))
 #+end_src
@@ -366,14 +365,13 @@
 #+begin_src emacs-lisp
   (use-package flycheck
     :ensure t
-    :defer 0
     :bind (:map flycheck-mode-map
      ("M-]" . flycheck-next-error)
      ("M-[" . flycheck-previous-error)
      )
+    :hook ((java-mode typescript-mode python-mode) . flycheck-mode)
     :init
-    (setq-default flycheck-emacs-lisp-load-path 'inherit)
-    :hook (after-init . global-flycheck-mode))
+    (setq-default flycheck-emacs-lisp-load-path 'inherit))
 
   (add-to-list 'display-buffer-alist
                `(,(rx bos "*Flycheck errors*" eos)
@@ -393,7 +391,6 @@
 
   (use-package treemacs
     :ensure t
-    :defer 0
     :bind (:map global-map
                 ("C-c t d" . treemacs-delete-other-windows)
                 ("C-c t t" . treemacs)
@@ -408,7 +405,6 @@
 
 #+begin_src emacs-lisp
   (use-package dap-mode
-    :after lsp-mode
     :bind (:map lsp-mode-map
           ("<f2>" . dap-debug)
                 ("M-<f2>" . dap-hydra)
@@ -433,7 +429,7 @@
 #+begin_src emacs-lisp
   (use-package lsp-ui
     :ensure t
-    :defer 0
+    :hook (lsp-mode . lsp-ui-mode)
     :bind (:map lsp-ui-mode-map
            ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
            ([remap xref-find-references] . lsp-ui-peek-find-references))
@@ -458,15 +454,13 @@
 #+begin_src emacs-lisp
   (use-package lsp-mode
     :ensure t
-    :defer 0
+    :commands (lsp lsp-deferred)
     :bind
     (:map lsp-mode-map
           ("M-RET" . lsp-execute-code-action)
           ("C-c l f b" . lsp-format-buffer)
           ("C-c l f r" . lsp-format-region))
-    :hook (
-           (lsp-mode . lsp-enable-which-key-integration)
-           (java-mode . #'lsp-deferred))
+    :hook (lsp-mode . lsp-enable-which-key-integration)
     :init
     (setq lsp-keymap-prefix "C-c l") ; this is for which-key integration documentation, need to use lsp-mode-map
     (setq lsp-enable-file-watchers nil)
@@ -488,7 +482,6 @@
 #+begin_src emacs-lisp
   (use-package lsp-java
     :ensure t
-    :defer 0
     :init
     (setq lsp-java-java-path "/home/martin/.sdkman/candidates/java/current/bin/java")
     (setq lsp-java-vmargs
@@ -508,10 +501,8 @@
     (setq lsp-java-configuration-runtimes '[(:name "Java 11" :path "/home/martin/.sdkman/candidates/java/11.0.15-tem")
                                             (:name "Java 17" :path "/home/martin/.sdkman/candidates/java/17.0.3-tem")
                                             ])
-    :config
-    (add-hook 'java-mode-hook 'lsp)
-    (add-hook 'java-mode-hook 'flycheck-mode)
-    (add-hook 'java-mode-hook 'company-mode))
+    :hook
+    (java-mode . lsp-deferred))
 
   (use-package dap-java
     :ensure nil
@@ -528,8 +519,8 @@
 
 #+begin_src emacs-lisp
   (use-package typescript-mode
-    :ensure t
-    :defer 0
+    :hook
+    (typescript-mode . lsp-deferred)
     :config
     (add-hook 'typescript-mode-hook 'lsp)
     (setq typescript-indent-level 2))
@@ -541,17 +532,13 @@
 
 #+begin_src emacs-lisp
   (use-package lsp-pyright
-    :ensure t
-    :hook (python-mode . (lambda ()
-                           (require 'lsp-pyright)
-                           (lsp)))
+    :hook
+    (python-mode . lsp-deferred)
     :config
     (setq lsp-pyright-log-level "error"))
 
   ;; There's also blacken if you like it better.
   (use-package yapfify
-    :ensure t
-    :defer t
     :hook (python-mode . yapf-mode))
 #+end_src
 
