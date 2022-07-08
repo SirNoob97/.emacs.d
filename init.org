@@ -13,6 +13,17 @@
         gc-cons-percentage 0.1)))
 #+end_src
 
+* Startup Info
+
+#+begin_src emacs-lisp
+  (defun sn/display-startup-time ()
+    (message "*** Emacs Loaded in %s seconds ***"
+             (float-time (time-subtract after-init-time before-init-time)))
+    (message "*** Garbage Collections: %d ***" gcs-done))
+
+  (add-hook 'emacs-startup-hook #'sn/display-startup-time)
+#+end_src
+
 * Custom File
 
 #+begin_src emacs-lisp
