@@ -1,3 +1,6 @@
+#+TITLE: Personal Emacs Configuration
+#+PROPERTY: header-args:emacs-lisp :tangle ./init.el
+
 * Stop GC during startup
 
 #+begin_src emacs-lisp
