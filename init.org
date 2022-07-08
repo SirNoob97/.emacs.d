@@ -170,6 +170,18 @@
   (add-hook 'after-init-hook 'show-paren-mode)
 #+end_src
 
+* Org Mode
+
+#+begin_src emacs-lisp
+  (with-eval-after-load 'org
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (python . t)))
+
+    (push '("conf-unix" . conf-unix) org-src-lang-modes))
+#+end_src
+
 * Package
 
 #+begin_src emacs-lisp
