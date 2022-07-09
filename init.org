@@ -530,13 +530,19 @@
     :after (lsp-java))
 #+end_src
 
-** Web Mode
+** Front End
+*** Web Mode
 
 #+begin_src emacs-lisp
-  (use-package web-mode)
+  (use-package web-mode
+    :mode ("\\.html?\\'" "\\.css?\\'")
+    :config
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-attr-indent-offset 4)
+    (setq web-mode-css-indent-offset 2))
 #+end_src
 
-** Typescript
+*** Typescript
 
 #+begin_src emacs-lisp
   (use-package typescript-mode
