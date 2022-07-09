@@ -342,7 +342,7 @@
 #+begin_src emacs-lisp
   (use-package company
     :ensure t
-    :hook ((java-mode typescript-mode python-mode) . company-mode)
+    :hook (lsp-deferred . company-mode)
     :bind (("C-<tab>" . company-complete)
            :map company-active-map
            ("<tab>" . company-select-next)
@@ -371,7 +371,7 @@
     :bind (:map flycheck-mode-map
                 ("M-]" . flycheck-next-error)
                 ("M-[" . flycheck-previous-error))
-    :hook ((java-mode typescript-mode python-mode) . flycheck-mode)
+    :hook (lsp-deferred . flycheck-mode)
     :init
     (setq-default flycheck-emacs-lisp-load-path 'inherit))
 
