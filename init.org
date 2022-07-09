@@ -351,8 +351,7 @@
     (setq company-idle-delay nil)
     (setq company-selection-wrap-around t)
     (setq company-tooltip-flip-when-above t)
-    (setq company-tooltip-align-annotations t)
-    (global-company-mode))
+    (setq company-tooltip-align-annotations t))
 #+end_src
 
 ** Yasnippet
