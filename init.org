@@ -493,8 +493,8 @@
     (setq lsp-log-io nil)
     (setq read-process-output-max (* 1024 1024))	; 1 mb
     (setq lsp-idle-delay 0.500)
-    (setq gc-cons-threshold 100000000)
     :config
+    (setq gc-cons-threshold 100000000)
     (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
 #+end_src
 
@@ -531,28 +531,33 @@
 #+end_src
 
 ** Front End
-*** Web Mode
-
-#+begin_src emacs-lisp
-  (use-package web-mode
-    :mode ("\\.html?\\'" "\\.css?\\'")
-    :config
-    (setq web-mode-markup-indent-offset 2)
-    (setq web-mode-attr-indent-offset 4)
-    (setq web-mode-css-indent-offset 2))
-#+end_src
 
 *** Typescript
 
 #+begin_src emacs-lisp
   (use-package typescript-mode
-    :hook
-    (typescript-mode . lsp-deferred)
+    :hook (typescript-mode . lsp-deferred)
     :config
-    (add-hook 'typescript-mode-hook 'lsp)
+    (setq lsp-enabled-clients '(ts-ls))
     (setq typescript-indent-level 2))
+#+end_src
 
-  (setq lsp-clients-angular-node-get-prefix-command 'nil)
+*** Web Mode
+
+#+begin_src emacs-lisp
+;; TODO try to exclude angular html files for use web mode
+  (use-package web-mode
+    :config
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-attr-indent-offset 2)
+    (setq web-mode-css-indent-offset 2))
+#+end_src
+
+*** NG2 mode
+
+#+begin_src emacs-lisp
+  (use-package ng2-mode
+    :hook (ng2-html-mode . lsp-deferred))
 #+end_src
 
 ** Python
@@ -580,3 +585,4 @@
 ;	 :ensure t
 ;	 :config
 ;	 (add-hook 'compilation-filter-hook 'ansi-colorize-buffer))
+
