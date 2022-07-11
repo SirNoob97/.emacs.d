@@ -232,7 +232,6 @@
 
 #+begin_src emacs-lisp
   (use-package exec-path-from-shell :ensure t)
-  (exec-path-from-shell-initialize)
 #+end_src
 
 ** XClip
