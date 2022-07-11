@@ -382,7 +382,7 @@
   (use-package yasnippet
     :ensure t
     :hook (prog-mode . yas-minor-mode)
-    :commands (yas-reload-all))
+    :config (yas-reload-all))
 #+end_src
 
 ** Flycheck
