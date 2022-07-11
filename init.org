@@ -211,8 +211,9 @@
     :ensure t
     :init
     (setq spacemacs-theme-comment-bg nil)
-    (setq spacemacs-theme-custom-colors '((cblk-bg . "#292b2e")
-                                          (cblk-ln-bg . "#292b2e"))))
+    (setq spacemacs-theme-org-height nil)
+    (setq spacemacs-theme-org-bold nil)
+    (setq spacemacs-theme-org-priority-bold nil))
 
   (use-package dracula-theme
     :ensure t)
