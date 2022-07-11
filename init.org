@@ -5,6 +5,7 @@
 
 #+begin_src emacs-lisp
 ;;; -*- lexical-binding: t -*-
+;;Org mode fontification error in #<buffer init.org> at 14
   (setq gc-cons-percentage 0.6
         gc-cons-threshold most-positive-fixnum)
   (add-hook 'emacs-startup-hook
@@ -17,11 +18,13 @@
 
 #+begin_src emacs-lisp
   (defun sn/display-startup-time ()
-    (message "*** Emacs Loaded in %s seconds ***"
-             (float-time (time-subtract after-init-time before-init-time)))
-    (message "*** Garbage Collections: %d ***" gcs-done))
+    (message "*** Emacs loaded in %s with %d garbage collections ***"
+           (format "%.2f seconds"
+                   (float-time
+                   (time-subtract after-init-time before-init-time)))
+           gcs-done))
 
-  (add-hook 'emacs-startup-hook #'sn/display-startup-time)
+    (add-hook 'emacs-startup-hook 'sn/display-startup-time)
 #+end_src
 
 * Custom File
@@ -585,4 +588,3 @@
 ;	 :ensure t
 ;	 :config
 ;	 (add-hook 'compilation-filter-hook 'ansi-colorize-buffer))
-
