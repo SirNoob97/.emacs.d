@@ -580,6 +580,13 @@
     :hook (python-mode . yapf-mode))
 #+end_src
 
+** Go
+
+#+begin_src emacs-lisp
+  (use-package go-mode
+    :hook (go-mode . lsp-deferred))
+#+end_src
+
 * TODO check if settings doesnt work
 
 ;(defun ansi-colorize-buffer ()
