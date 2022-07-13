@@ -66,7 +66,7 @@
 ** Misc
 
 #+begin_src emacs-lisp
-  (set-face-attribute 'default nil :family "JetBrains Nerd Font Mono" :height 110)
+  (set-face-attribute 'default nil :family "JetBrainsMono Nerd Font Mono" :height 110)
   (fset 'yes-or-no-p 'y-or-n-p) ;; never have to type full word
   (windmove-default-keybindings 'meta)
   (set-default 'truncate-lines t)
