@@ -154,8 +154,6 @@
 * Hooks
 
 #+begin_src emacs-lisp
-  (add-hook 'compilation-filter-hook 'sn-ansi-colorize-buffer)
-
   ;; reload if file changed on disk
   (add-hook 'after-init-hook 'global-auto-revert-mode)
 
