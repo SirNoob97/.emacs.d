@@ -401,7 +401,10 @@
                 ("M-[" . flycheck-previous-error))
     :hook (lsp-deferred . flycheck-mode)
     :init
-    (setq-default flycheck-emacs-lisp-load-path 'inherit))
+    (setq-default flycheck-emacs-lisp-load-path 'inherit)
+    :config
+    (setq flycheck-checker-error-threshold 20)
+    (setq flycheck-mode-line (concat " " flycheck-mode-line-prefix)))
 
   (add-to-list 'display-buffer-alist
                `(,(rx bos "*Flycheck errors*" eos)
@@ -496,10 +499,10 @@
     (setq lsp-lens-enable nil)
     (setq lsp-eldoc-enable-hover nil)
     (setq lsp-enable-on-type-formatting nil)
-    (setq lsp-modeline-diagnostics-enable nil) ; flycheck handle this
     (setq lsp-log-io nil)
     (setq read-process-output-max (* 1024 1024))	; 1 mb
     (setq lsp-idle-delay 0.500)
+    (setq lsp-modeline-code-actions-segments '(count))
     :config
     (setq gc-cons-threshold 100000000)
     (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
