@@ -500,9 +500,9 @@
     (setq lsp-eldoc-enable-hover nil)
     (setq lsp-enable-on-type-formatting nil)
     (setq lsp-log-io nil)
-    (setq read-process-output-max (* 1024 1024))	; 1 mb
     (setq lsp-idle-delay 0.500)
     (setq lsp-modeline-code-actions-segments '(count))
+    (setq read-process-output-max (* 1024 1024))	; 1 mb
     :config
     (setq gc-cons-threshold 100000000)
     (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
