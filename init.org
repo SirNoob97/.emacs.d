@@ -81,6 +81,7 @@
   (setq sentence-end-double-space nil)
   (setq require-final-newline t)
   (setq help-window-select t)
+  (setq dired-listing-switches "-alhF --group-directories-first")
 #+end_src
 
 ** Clipboard
