@@ -274,6 +274,7 @@
     (setq evil-want-integration t)
     (setq evil-undo-system 'undo-redo)
     :config
+    (evil-set-initial-state 'dired-mode 'emacs)
     (evil-mode t)
     (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state))
 
