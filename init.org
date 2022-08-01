@@ -82,6 +82,7 @@
   (setq require-final-newline t)
   (setq help-window-select t)
   (setq dired-listing-switches "-alhF --group-directories-first")
+  (put 'dired-find-alternate-file 'disabled nil) ; enabled 'a' to reuse directory buffer
 #+end_src
 
 ** Clipboard
@@ -145,6 +146,11 @@
 
   ;; Show paren
   (add-hook 'after-init-hook 'show-paren-mode)
+
+  ;; Dired reuse directory buffer when move up to parent directory
+  (add-hook 'dired-mode-hook
+            (lambda () (define-key dired-mode-map (kbd "^")
+                         (lambda () (interactive) (find-alternate-file "..")))))
 #+end_src
 
 * Package
