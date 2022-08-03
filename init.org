@@ -282,6 +282,7 @@
     (setq evil-undo-system 'undo-redo)
     :config
     (evil-set-initial-state 'dired-mode 'emacs)
+    (evil-set-initial-state 'treemacs-mode 'emacs)
     (evil-mode t)
     (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state))
 
