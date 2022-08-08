@@ -13,5 +13,6 @@
 tramp
 recentf
 eln-cache
+transient
 
 init.el
