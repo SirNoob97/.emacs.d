@@ -556,6 +556,14 @@
     :hook (go-mode . lsp-deferred))
 #+end_src
 
+** C/C++
+
+#+begin_src emacs-lisp
+  (use-package cc-mode
+    :hook (c-mode . lsp-deferred)
+    (c++-mode .lsp-deferred))
+#+end_src
+
 * TODO check if settings doesnt work
 
 ;(defun ansi-colorize-buffer ()
